@@ -1,0 +1,8 @@
+{
+  "name": "Remix: ElectroMind",
+  "description": "Beyond Specs. Built for Years. AI-powered decision engine for high-quality, long-lasting electronics.",
+  "requestFramePermissions": [
+    "geolocation"
+  ],
+  "majorCapabilities": []
+}

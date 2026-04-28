@@ -1,0 +1,70 @@
+{
+  "entities": {
+    "User": {
+      "title": "User",
+      "description": "User profile information",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string" },
+        "email": { "type": "string" },
+        "displayName": { "type": "string" },
+        "photoURL": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["uid", "email"]
+    },
+    "Product": {
+      "title": "Product",
+      "description": "Electronics product data",
+      "type": "object",
+      "properties": {
+        "name": { "type": "string" },
+        "category": { "type": "string" },
+        "brand": { "type": "string" },
+        "description": { "type": "string" },
+        "price": { "type": "number" },
+        "imageUrl": { "type": "string" },
+        "specs": { "type": "object" },
+        "durabilityScore": { "type": "number" },
+        "performanceScore": { "type": "number" },
+        "batteryScore": { "type": "number" },
+        "brandReliability": { "type": "number" },
+        "repairabilityScore": { "type": "number" },
+        "estimatedLifespan": { "type": "number" },
+        "trueCost": { "type": "number" },
+        "hiddenWarnings": { "type": "array", "items": { "type": "string" } },
+        "componentAnalysis": { "type": "string" }
+      },
+      "required": ["name", "category", "price"]
+    },
+    "Recommendation": {
+      "title": "Recommendation",
+      "description": "Saved user recommendations",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "userInput": { "type": "object" },
+        "productId": { "type": "string" },
+        "productData": { "$ref": "#/entities/Product" },
+        "matchScore": { "type": "number" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "feedback": { "type": "string" }
+      },
+      "required": ["userId", "productId", "matchScore"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": "User",
+      "description": "User profiles"
+    },
+    "/products/{productId}": {
+      "schema": "Product",
+      "description": "Available products"
+    },
+    "/recommendations/{recommendationId}": {
+      "schema": "Recommendation",
+      "description": "Generated recommendations"
+    }
+  }
+}
